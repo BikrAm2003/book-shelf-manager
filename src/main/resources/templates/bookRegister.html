@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.com">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Book Store - Add New Book</title>
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+        background: linear-gradient(to right, #f8f9fa, #e0eafc);
+        margin: 0;
+        padding: 0;
+      }
+
+      .navbar {
+        background: linear-gradient(to right, #1f1c2c, #928dab);
+        padding: 1rem 2rem;
+      }
+
+      .navbar-brand,
+      .nav-link {
+        color: #ffffff !important;
+        font-weight: 600;
+        transition: color 0.3s ease;
+      }
+
+      .nav-link:hover {
+        color: #ffd369 !important;
+      }
+
+      .container {
+        animation: fadeIn 0.7s ease-in-out;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Form Styling */
+      .form-wrapper {
+        background: #ffffff;
+        border-radius: 16px;
+        padding: 40px 30px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease-in-out;
+      }
+
+      .form-wrapper:hover {
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      }
+
+      h4 {
+        font-weight: 700;
+        color: #343a40;
+        margin-bottom: 30px;
+      }
+
+      label {
+        font-weight: 600;
+        color: #495057;
+      }
+
+      input.form-control {
+        border-radius: 8px;
+        padding: 10px 15px;
+        border: 1px solid #ced4da;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      input.form-control:focus {
+        border-color: #6a11cb;
+        box-shadow: 0 0 0 0.2rem rgba(106, 17, 203, 0.25);
+      }
+
+      .btn-primary {
+        background: linear-gradient(to right, #6a11cb, #2575fc);
+        border: none;
+        padding: 10px 30px;
+        font-weight: 600;
+        border-radius: 30px;
+        transition: background 0.3s ease;
+      }
+
+      .btn-primary:hover {
+        background: linear-gradient(to right, #5f0aa7, #1d63ea);
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+      <a class="navbar-brand text-white" href="#">Book Store</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link active text-white" href="/">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="available_books">Available Books</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="my_Books">My Books</a>
+          </li>
+        </ul>
+        <div>
+          <a class="nav-link text-white" href="book_register">Register New Book</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Form Section -->
+    <div class="container my-5">
+      <div class="form-wrapper col-md-6 offset-md-3">
+        <h4 class="text-center">Add New Book</h4>
+        <form th:action="@{/save}" th:object="${book}" method="post">
+          <div class="mb-3">
+            <label for="bookName">Book Name</label>
+            <input type="text" class="form-control" id="bookName" th:field="*{name}" placeholder="Enter book name">
+          </div>
+          <div class="mb-3">
+            <label for="bookAuthor">Author</label>
+            <input type="text" class="form-control" id="bookAuthor" th:field="*{author}" placeholder="Enter author name">
+          </div>
+          <div class="mb-3">
+            <label for="bookPrice">Price</label>
+            <input type="number" class="form-control" id="bookPrice" th:field="*{price}" placeholder="Enter price">
+          </div>
+          <center>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </center>
+        </form>
+      </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"></script>
+  </body>
+</html>
